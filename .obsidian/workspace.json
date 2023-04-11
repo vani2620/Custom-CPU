@@ -1,0 +1,196 @@
+{
+  "main": {
+    "id": "b94b3490e8789100",
+    "type": "split",
+    "children": [
+      {
+        "id": "d0089029f9e37af0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9b3c28a03379c4fc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CPU ISA.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3409e3e84905a580",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ALU spec.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "0d737f176981f69f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SPI controller.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f22e8ce4b2f51a36",
+    "type": "split",
+    "children": [
+      {
+        "id": "2172d76c1ecb35d0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e7926582c244b97b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "3486b2bd882b9ea8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1bbf3a7368784ad7",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "b3e68120646a13c3",
+    "type": "split",
+    "children": [
+      {
+        "id": "a701c923c18bc59c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "915fe29a8445187d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "CPU ISA.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "72c21175c24355d9",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "CPU ISA.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9317df18ac10de35",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "deb00884ef7b7728",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "CPU ISA.md"
+              }
+            }
+          },
+          {
+            "id": "422bbec8ae0329b5",
+            "type": "leaf",
+            "state": {
+              "type": "stats-tracker",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "darlal-switcher-plus:Open in Headings Mode": false,
+      "darlal-switcher-plus:Open Symbols for the active editor": false,
+      "open-vscode:VSCode": false,
+      "obsidian-leaflet-plugin:Open Leaflet Map": false,
+      "obsidian-journey-plugin:Find Journey": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
+      "obsidian-comments:Show Comments Panel": false,
+      "obsidian-memos:Memos": false
+    }
+  },
+  "active": "e7926582c244b97b",
+  "lastOpenFiles": [
+    "SPI controller.md",
+    "ALU spec.md",
+    "CPU ISA.md"
+  ]
+}

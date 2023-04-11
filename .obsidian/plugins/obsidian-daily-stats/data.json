@@ -1,0 +1,13 @@
+{
+  "dayCounts": {
+    "2023/1/10": 82,
+    "2023/1/11": 2,
+    "2023/1/12": 1
+  },
+  "todaysWordCount": {
+    "CPU ISA.md": {
+      "initial": 617,
+      "current": 618
+    }
+  }
+}
