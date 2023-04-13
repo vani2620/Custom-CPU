@@ -18,10 +18,16 @@ module spi_controller #(
 
     input poci, //peripheral out, controller in
 
+    //To peripheral device
     output copi, //controller out, peripheral in
     output [PERI_CNT - 1:0] s_chip_sel_one_cold,
-    output count,
-    output end_txn
+
+    //To computer
+    output [DATA_WIDTH - 1:0] parallel_rd_data,
+    output end_txn,
+
+    //Debugging
+    output count
 );
 
 reg [DATA_WIDTH - 1:0] data;
@@ -41,7 +47,7 @@ reg [] spi_csr;
 always_ff @(posedge clk or negedge sync_rst_n) begin
     if (!sync_rst_n) begin
         data <= 0;
-        counter <= 0;
+        counter <= 64'h0;
         copi <= 0;
     end
 end
@@ -54,10 +60,19 @@ always_ff @(posedge clk) begin
     end
     //Transaction
     else if (clk_en && start_txn) begin
-        counter <= counter - 1;
-        count <= counter;
-        data <= {din, data[6:0]};
-        pico <= data[7];
+        while (counter != 0) begin
+            counter <= counter - 1;
+            count <= counter;
+            copi <= data[7];
+            data <= {pico, data[6:0]};
+        end
+        end_txn <= 1'b1;
+    end
+end
+
+always_comb begin
+    if (rd_en) begin
+        parallel_rd_data = data;
     end
 end
 
