@@ -1,6 +1,6 @@
 module phys_map_table #(
     parameter int CELLS = 128,
-    parameter int VIRT_COUNT = 256,
+    parameter int VIRT_COUNT = 128,
     parameter int VIRT_ADDR_WIDTH = $clog2(VIRT_COUNT),
     parameter int WRITE_PORTS = 4,
     parameter int READ_PORTS = 4,

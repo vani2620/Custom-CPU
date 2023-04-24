@@ -36,97 +36,24 @@ Lane structure
 
 Major opcode size: 7 bits (temp)
 
-3 register integer instructions (15 bits for registers) (refer to [[ALU spec]]])
-
--   Add   
--   Subtract
--   Multiply
--   Divide
--   Shifts
-	-   1 bit
-	-   2 bits
-	-   4 bits
-	-   8 bits
-	-   16 bits
--   Set less than
-	- Signed
-	- unsigned
--   Logical ops
-	- AND
-	- OR
-	- XOR
-	- NOR (use a0 as an operand for NOT)
-	- XNOR
-	- NAND
-	- IMPLIES (+ reversed operands)
-	- ONLY (+ reversed operands)
-2 register integer instructions (10 bits for registers)
-- JALR - return destination and pointer
-- Store - pointer and source (byte, halfword, word, double word)
-- Load - pointer and destination (see above) 
-- Immediate variants of 3 register instructions
-- Branch instructions – BLE{U}, BEQ, BGE{U}, BNE  
-
-1 register integer instructions (5 bits for registers)
-- Load upper immediate - 20 bit immediate
-- Add upper immediate to PC - 20 bit immediate
-- Jump and link - 20 bit immediate
-Supported immediate sizes
-- Lower 12 bits
-- Upper 20 bits
-  
-
-3 register floating point instructions
-- Add
-- Subtract
-- Multiply
-- Fused multiply-add
-- Fused multiply-subtract
-- Fused negated multiply-add
-- Fused negated multiply-subtract
-- 
-  
-
-Floating point/LNS requirement
-- Rounding modes  
-	- Ties to even – round to nearest even number  
-	- Ties to zero – round to nearest whole number, bias to zero (i.e. 11.5 -> 11.0, -11.5 -> -11.0) (basically just truncation)  
-	- Ties to positive infinity – round up  
-	- Ties to negative infinite – round down
-	- Ties away from zero – round up if positive, round down if negative
-- Operations
-	- Multiply  
-	- Add  
-	- Subtract
-	- Divide  
-	- Remainder
-	- Maximum/minimum  
-	- Comparisons (review doc)
-	- Total ordering (review doc)
--   Misc. features
-	- Signed zero (for dealing with singularities)
-	- Subnormals (range limitations)
-	- NaN
-	- Positive/negative infinity
-
-
 Shared opcode spaces
 - Integer
-- Arithmetic and logical operations (shifts excluded)
-	- Total number: 12 operations => 4 bits for function code  
-- Shifts  
-	- Total: 3 operations => 2 bit function code  
-- Branches
-	- Total: 6 operations => 3 bit function code
-- Jump
-	- 1 operation => no function code needed
-- Loads
-	- Total: 4 operations => 2 bit function code
-- Stores
-	- Total: 4 operations => 2 bit function code
+	- Arithmetic
+	- Comparisons
+	- Bitwise
+	- Shifting
+- Control flow
+	- Branches
+	- Jump
+	- Predicated instructions
+	- Conditional moves
+- Memory
+	- Loads
+	- Stores
 - Floating point/Logarithmic
 	- Arithmetic
-		- Total: 3 operations => 
+	- Rounding
+	- Comparison
 - Fused multiply-add unit
 	- Total: 4 operations => 
 - Vector

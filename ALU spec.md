@@ -1,6 +1,9 @@
 Addendum to [[CPU ISA]]
 
 Data width: 64 bits
+Adder/subtractor
+Barrel shifter
+
 
 Supported functions:
 1) ADDition
@@ -17,4 +20,5 @@ Supported functions:
 14) DIVision
 15) ROTate Right
 16) ROTate Left
-17) 
+17) NEGate
+18) 
