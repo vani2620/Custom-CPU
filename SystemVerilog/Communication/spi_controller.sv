@@ -2,37 +2,39 @@ module spi_controller #(
     parameter int DATA_WIDTH = 64,
     parameter int PERI_CNT = 4 //bogus number of peripherals
 )(
-    input clk,
-    input clk_en,
-    input sync_rst_n,
-    input start_txn,
+    input wire clk,
+    input wire clk_en,
+    input wire sync_rst_n,
+    input wire start_txn,
 
-    input wr_en,
+    input wire wr_en,
 
-    input [1:0] spi_mode,
-    input [2:0] byte_sel, //enables the transmission of one to eight bytes
+    input wire [1:0] spi_mode,
+    input wire [2:0] byte_sel, //enables the transmission of one to eight bytes
 
-    input [DATA_WIDTH - 1:0] parallel_wr_data,
+    input wire [DATA_WIDTH - 1:0] parallel_wr_data,
 
-    input [PERI_CNT - 1:0] chip_sel_one_cold,
+    input wire [PERI_CNT - 1:0] chip_sel_one_cold,
 
-    input poci, //peripheral out, controller in
+    input wire poci, //peripheral out, controller in
+	 input wire rd_en,
 
     //To peripheral device
-    output copi, //controller out, peripheral in
-    output [PERI_CNT - 1:0] s_chip_sel_one_cold,
+    output reg copi, //controller out, peripheral in
+    output reg [PERI_CNT - 1:0] s_chip_sel_one_cold,
+    output reg s_clk,
 
     //To computer
-    output [DATA_WIDTH - 1:0] parallel_rd_data,
-    output end_txn,
+    output reg [DATA_WIDTH - 1:0] parallel_rd_data,
+    output reg end_txn,
 
     //Debugging
-    output count
+    output reg count
 );
 
 reg [DATA_WIDTH - 1:0] data;
 reg [$clog2(DATA_WIDTH) - 1:0] counter;
-reg [] spi_csr;
+//reg [] spi_csr;
 // Register fields
     //spi_csr[1:0] = spi_mode
         //spi_mode[0] = CPOL
@@ -46,9 +48,9 @@ reg [] spi_csr;
 //RESET
 always_ff @(posedge clk or negedge sync_rst_n) begin
     if (!sync_rst_n) begin
-        data <= 0;
-        counter <= 64'h0;
-        copi <= 0;
+        data <= '0;
+        counter <= '0;
+        copi <= '0;
     end
 end
 
@@ -64,7 +66,7 @@ always_ff @(posedge clk) begin
             counter <= counter - 1;
             count <= counter;
             copi <= data[7];
-            data <= {pico, data[6:0]};
+            data <= {copi, data[6:0]};
         end
         end_txn <= 1'b1;
     end
