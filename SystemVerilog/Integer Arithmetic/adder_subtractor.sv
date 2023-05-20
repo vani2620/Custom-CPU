@@ -1,7 +1,7 @@
 //Follows design of adder subtractor module here: http://fpgacpu.ca/fpga/Adder_Subtractor_Binary.html
 
 module adder_subtractor #(
-    parameter int DATA_WIDTH = 0
+    parameter int DATA_WIDTH = 16
 )(
     input mode, //add or subtract
 

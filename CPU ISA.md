@@ -50,13 +50,13 @@ Shared opcode spaces
 - Memory
 	- Loads
 	- Stores
-- Floating point/Logarithmic
+- Floating point/Logarithmic (reserved)
 	- Arithmetic
 	- Rounding
 	- Comparison
-- Fused multiply-add unit
+- Fused multiply-add unit (reserved)
 	- Total: 4 operations => 
-- Vector
+- Vector (reserved)
 	- Set VL
 	- Load
 	- Store  
@@ -75,6 +75,43 @@ Pipeline stages
 - Execute
 - Commit
 
+
+Opcode composition
+`opcode[1:0]` - instruction width
+	`00` => 16b
+	`01` => 32b (default)
+	`10` => 48b
+	`11` => 64b
+
+32b instructions
+Fixed-point arithmetic instructions (non-immediate)
+Compare and branch 
+- source register 1
+- source register 2
+- branch target offset 
+Unconditional direct jump
+- destination register
+- jump target address 
+Unconditional indirect jump 
+- destination register
+- source register
+- jump target offset 
+Predicated instructions 
+- source register 1
+- source register 2
+- destination register
+- condition code 
+Conditional selects 
+- source register
+- destination register 1
+- destination register 2
+- condition code
+
+
+`opcode[7:2]` specifies type
+	`'d0` => arithmetic 3op (integer)
+	`'d1` => arithmetic 2op (integer)
+	`'d2` => 
   
 
 Vector stuff
