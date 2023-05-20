@@ -1,4 +1,8 @@
 //Follows design of adder subtractor module here: http://fpgacpu.ca/fpga/Adder_Subtractor_Binary.html
+`default_nettype none
+
+// verilog_lint: waive-start line-length
+// verilog_lint: waive-start parameter-name-style
 
 module adder_subtractor #(
     parameter int DATA_WIDTH = 16
@@ -14,8 +18,7 @@ module adder_subtractor #(
     output reg carry_out,
     output reg overflow
 );
-// verilog_lint: waive-start line-length
-// verilog_lint: waive-start parameter-name-style
+
 
 localparam logic ZERO = {DATA_WIDTH{1'b0}};
 localparam logic ONE = {{DATA_WIDTH - 1{1'b0}}, 1'b1};
@@ -74,3 +77,5 @@ always_comb begin
 end
 
 endmodule
+
+`default_nettype wire

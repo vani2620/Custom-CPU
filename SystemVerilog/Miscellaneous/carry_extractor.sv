@@ -1,4 +1,7 @@
 //From http://fpgacpu.ca/fpga/CarryIn_Binary.html
+`default_nettype none
+// verilog_lint: waive-start line-length
+// verilog_lint: waive-start parameter-name-style
 
 module carry_extractor #(
     parameter int DATA_WIDTH = 0
@@ -18,3 +21,5 @@ always_comb begin
 end
 
 endmodule
+
+`default_nettype wire

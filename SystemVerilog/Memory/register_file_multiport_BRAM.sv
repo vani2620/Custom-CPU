@@ -1,3 +1,4 @@
+`default_nettype none
 // verilog_lint: waive-start line-length
 // verilog_lint: waive-start parameter-name-style
 
@@ -50,3 +51,4 @@ end
 endgenerate
 
 endmodule
+`default_nettype wire
