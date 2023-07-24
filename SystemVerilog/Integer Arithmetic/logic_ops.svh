@@ -6,4 +6,9 @@
     `define OR              7'h1
     `define AND             7'h2
     `define XOR             7'h3
+
+    `define LRS             7'h4
+    `define ARS             7'h5
+    `define LLS             7'h6
+    `define LROT            7'h7
 `endif

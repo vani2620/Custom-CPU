@@ -85,6 +85,15 @@ Opcode composition
 
 32b instructions
 Fixed-point arithmetic instructions (non-immediate)
+- source register 1
+- source register 2
+- destination register
+- function code
+Fixed-point arithmetic instructions (immediate)
+- source register
+- destination register
+- function code
+- immediate
 Compare and branch 
 - source register 1
 - source register 2
@@ -106,7 +115,14 @@ Conditional selects
 - destination register 1
 - destination register 2
 - condition code
-
+Indirect loads
+- destination register
+- source register (address base)
+- address offset
+Indirect stores
+- source register 1 (data)
+- source register 2 (address base)
+- address offset
 
 `opcode[7:2]` specifies type
 	`'d0` => arithmetic 3op (integer)

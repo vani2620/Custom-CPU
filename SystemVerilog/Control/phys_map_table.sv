@@ -1,3 +1,8 @@
+`default_nettype none
+
+// verilog_lint: waive-start line-length
+// verilog_lint: waive-start parameter-name-style
+
 module phys_map_table #(
     parameter int CELLS = 128,
     parameter int VIRT_COUNT = 128,
@@ -54,3 +59,5 @@ genvar j;
 endgenerate
 
 endmodule
+
+`default_nettype wire

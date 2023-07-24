@@ -23,11 +23,6 @@ module adder_subtractor #(
 localparam logic ZERO = {DATA_WIDTH{1'b0}};
 localparam logic ONE = {{DATA_WIDTH - 1{1'b0}}, 1'b1};
 
-initial begin
-    sum = ZERO;
-    carry_out = 1'b0;
-    overflow = 1'b0;
-end
 wire [DATA_WIDTH - 1: 0] c_in_ext_unsigned;
 wire [DATA_WIDTH - 1: 0] c_in_ext_signed;
 
@@ -44,7 +39,7 @@ width_adjuster #(
     .INPUT_WIDTH (1),
     .OUTPUT_WIDTH (DATA_WIDTH),
     .SIGNED (1)
-)extend_c_in_signed(
+) extend_c_in_signed (
     .data_in (carry_in),
     .data_out (c_in_ext_signed)
 );
@@ -65,7 +60,7 @@ end
 
 carry_extractor #(
     .DATA_WIDTH (DATA_WIDTH)
-)extractor(
+) extractor (
     .data_in_a (data_in_a),
     .data_in_b (data_in_b),
     .sum (sum),
