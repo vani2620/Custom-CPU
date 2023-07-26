@@ -23,14 +23,14 @@ module adder_subtractor #(
 localparam logic ZERO = {DATA_WIDTH{1'b0}};
 localparam logic ONE = {{DATA_WIDTH - 1{1'b0}}, 1'b1};
 
-wire [DATA_WIDTH - 1: 0] c_in_ext_unsigned;
-wire [DATA_WIDTH - 1: 0] c_in_ext_signed;
+wire [DATA_WIDTH - 1:0] c_in_ext_unsigned;
+wire [DATA_WIDTH - 1:0] c_in_ext_signed;
 
 width_adjuster #(
     .INPUT_WIDTH (1),
     .OUTPUT_WIDTH (DATA_WIDTH),
     .SIGNED (0)
-)extend_c_in_unsigned(
+) extend_c_in_unsigned (
     .data_in (carry_in),
     .data_out (c_in_ext_unsigned)
 );

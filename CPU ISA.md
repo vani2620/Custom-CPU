@@ -1,3 +1,22 @@
+
+Current iteration
+- 32-bit instruction width
+- 32-bit data width
+- single issue
+- dynamic scheduling
+- 3 operands
+- 32 registers (incl. zero reg)
+
+Addressing modes
+- Register-indexed
+	- `data = mem[reg[src1] + imm]`
+	- auto-encodes register-direct when `imm = 0`
+- Register-register
+	- `data = mem[reg[src1] + reg[src2]]`
+- more added in future iterations
+
+
+
 General specs:
 - 64-bit data width  
 - 32-bit instruction width (+ possibly 16-bit compressed instructions)  
@@ -33,7 +52,6 @@ Lane structure
 - ALU
 - Register bank
 - 
-
 Major opcode size: 7 bits (temp)
 
 Shared opcode spaces
@@ -193,9 +211,6 @@ Fibonacci sequence but parallel
 Parameter: n
 
 Description: see above
-
-  
-**
 
 
 [[SPI controller]]

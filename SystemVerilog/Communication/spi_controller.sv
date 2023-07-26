@@ -17,7 +17,7 @@ module spi_controller #(
     input wire [PERI_CNT - 1:0] chip_sel_one_cold,
 
     input wire poci, //peripheral out, controller in
-	 input wire rd_en,
+    input wire rd_en,
 
     //To peripheral device
     output reg copi, //controller out, peripheral in
