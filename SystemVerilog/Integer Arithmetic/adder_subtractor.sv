@@ -14,7 +14,6 @@ module adder_subtractor #(
     input wire carry_in,
 
     output reg [DATA_WIDTH - 1:0] sum,
-    output wire [DATA_WIDTH - 1:0] carries,
     output reg carry_out,
     output reg overflow
 );
@@ -25,6 +24,7 @@ localparam logic ONE = {{DATA_WIDTH - 1{1'b0}}, 1'b1};
 
 wire [DATA_WIDTH - 1:0] c_in_ext_unsigned;
 wire [DATA_WIDTH - 1:0] c_in_ext_signed;
+reg [DATA_WIDTH - 1:0] carries;
 
 width_adjuster #(
     .INPUT_WIDTH (1),
