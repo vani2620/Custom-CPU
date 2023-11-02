@@ -11,7 +11,7 @@ module branch_history_table #(
     input wire clk_en,
     input wire sync_rst_n,
 
-    input wire [ADDR_WIDTH - 1 : 0] branch_address,
+    input wire [ADDR_WIDTH-1:0] branch_address,
     input wire last_branch_result
 );
 

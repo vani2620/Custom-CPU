@@ -18,26 +18,26 @@ module instruction_queue #(
     input sync_rst_n,
 
     input wr_en,
-    input [ADDR_WIDTH - 1: 0] queue_wr_addr,
+    input [ADDR_WIDTH-1: 0] queue_wr_addr,
 
-    input [OPCODE_WIDTH - 1:0] wr_opcode,
-    input [PHYS_ADDR_WIDTH - 1:0] wr_dest_addr,
-    input [PHYS_ADDR_WIDTH - 1:0] wr_src_addr [2],
+    input [OPCODE_WIDTH-1:0] wr_opcode,
+    input [PHYS_ADDR_WIDTH-1:0] wr_dest_addr,
+    input [PHYS_ADDR_WIDTH-1:0] wr_src_addr [2],
     input wr_src_valid [2],
 
     input rd_en,
-    input [ADDR_WIDTH - 1:0] queue_rd_addr,
+    input [ADDR_WIDTH-1:0] queue_rd_addr,
 
-    output [OPCODE_WIDTH - 1:0] rd_opcode,
-    output [PHYS_ADDR_WIDTH - 1:0] rd_dest_addr,
-    output [PHYS_ADDR_WIDTH - 1:0] rd_src_addr[2],
+    output [OPCODE_WIDTH-1:0] rd_opcode,
+    output [PHYS_ADDR_WIDTH-1:0] rd_dest_addr,
+    output [PHYS_ADDR_WIDTH-1:0] rd_src_addr[2],
     output rd_src_valid [2]
 );
 
 typedef struct packed {
-    logic [OPCODE_WIDTH - 1:0] opcode;
-    logic [VIRT_ADDR_WIDTH - 1:0] dest_addr;
-    logic [VIRT_ADDR_WIDTH - 1:0] src_addr [2];
+    logic [OPCODE_WIDTH-1:0] opcode;
+    logic [VIRT_ADDR_WIDTH-1:0] dest_addr;
+    logic [VIRT_ADDR_WIDTH-1:0] src_addr [2];
     logic src_valid [2];
 } queue_entry_t;
 

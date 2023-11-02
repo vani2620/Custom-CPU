@@ -1,39 +1,44 @@
 module spi_controller #(
-    parameter int DATA_WIDTH = 64,
-    parameter int PERI_CNT = 4 //bogus number of peripherals
+    parameter int SPI_DATA_WIDTH = 8,
+    parameter int PERI_CNT = 4, //number of peripherals
+    parameter int CYCLES_PER_HALF_BIT = 2,
+    parameter int MAX_BYTES_PER_CS = 2,
+    parameter int CS_INACTIVE_CYCLES = 1,
+    parameter int CPOL = 0,
+    parameter int CPHA = 0
 )(
     input wire clk,
-    input wire clk_en,
     input wire sync_rst_n,
-    input wire start_txn,
 
-    input wire wr_en,
+    //Control signals
+    input wire clk_en,
+    input wire start_txn, //Ready to transmit data--pulse when bit counter = 0
 
-    input wire [1:0] spi_mode,
-    input wire [2:0] byte_sel, //enables the transmission of one to eight bytes
+    //From CPU
+    input wire [SPI_DATA_WIDTH-1:0] parallel_wr_data,
+    input wire [PERI_CNT-1:0] p_sel_one_cold,
 
-    input wire [DATA_WIDTH - 1:0] parallel_wr_data,
-
-    input wire [PERI_CNT - 1:0] chip_sel_one_cold,
-
+    //From peripheral device
     input wire poci, //peripheral out, controller in
-    input wire rd_en,
 
     //To peripheral device
     output reg copi, //controller out, peripheral in
-    output reg [PERI_CNT - 1:0] s_chip_sel_one_cold,
-    output reg s_clk,
+    output reg [PERI_CNT-1:0] p_sel_one_cold,
+    output reg p_clk, //SPI clock
 
     //To computer
-    output reg [DATA_WIDTH - 1:0] parallel_rd_data,
-    output reg end_txn,
-
-    //Debugging
-    output reg count
+    output reg end_txn
 );
 
-reg [DATA_WIDTH - 1:0] data;
-reg [$clog2(DATA_WIDTH) - 1:0] counter;
+reg [DATA_WIDTH-1:0] data;
+typedef struct packed {
+    reg [1:0] mode;
+    reg [$clog2(DATA_WIDTH)-1:0] bit_counter;
+} spi_csr_t;
+
+spi_csr_t spi_csr;
+
+
 //reg [] spi_csr;
 // Register fields
     //spi_csr[1:0] = spi_mode
@@ -46,35 +51,13 @@ reg [$clog2(DATA_WIDTH) - 1:0] counter;
         //state[2] = idle/done
 
 //RESET
-always_ff @(posedge clk or negedge sync_rst_n) begin
+always_ff @(posedge clk) begin
     if (!sync_rst_n) begin
         data <= '0;
         counter <= '0;
         copi <= '0;
-    end
-end
-
-
-always_ff @(posedge clk) begin
-    //Write data from core
-    if (clk_en && wr_en) begin
-        data <= parallel_wr_data;
-    end
-    //Transaction
-    else if (clk_en && start_txn) begin
-        while (counter != 0) begin
-            counter <= counter - 1;
-            count <= counter;
-            copi <= data[7];
-            data <= {copi, data[6:0]};
-        end
-        end_txn <= 1'b1;
-    end
-end
-
-always_comb begin
-    if (rd_en) begin
-        parallel_rd_data = data;
+        spi_csr.mode <= '0;
+        spi_csr.sel <= '0;
     end
 end
 

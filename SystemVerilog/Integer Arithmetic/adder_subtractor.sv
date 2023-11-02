@@ -9,22 +9,22 @@ module adder_subtractor #(
 )(
     input mode, //add or subtract
 
-    input wire [DATA_WIDTH - 1:0] data_in_a,
-    input wire [DATA_WIDTH - 1:0] data_in_b,
+    input wire [DATA_WIDTH-1:0] data_in_a,
+    input wire [DATA_WIDTH-1:0] data_in_b,
     input wire carry_in,
 
-    output reg [DATA_WIDTH - 1:0] sum,
+    output reg [DATA_WIDTH-1:0] sum,
     output reg carry_out,
     output reg overflow
 );
 
 
 localparam logic ZERO = {DATA_WIDTH{1'b0}};
-localparam logic ONE = {{DATA_WIDTH - 1{1'b0}}, 1'b1};
+localparam logic ONE = {{DATA_WIDTH-1{1'b0}}, 1'b1};
 
-wire [DATA_WIDTH - 1:0] c_in_ext_unsigned;
-wire [DATA_WIDTH - 1:0] c_in_ext_signed;
-reg [DATA_WIDTH - 1:0] carries;
+wire [DATA_WIDTH-1:0] c_in_ext_unsigned;
+wire [DATA_WIDTH-1:0] c_in_ext_signed;
+reg [DATA_WIDTH-1:0] carries;
 
 width_adjuster #(
     .INPUT_WIDTH (1),
@@ -44,9 +44,9 @@ width_adjuster #(
     .data_out (c_in_ext_signed)
 );
 
-reg [DATA_WIDTH - 1:0] b_selected = ZERO;
-reg [DATA_WIDTH - 1:0] offset = ZERO;
-reg [DATA_WIDTH - 1:0] carry_in_selected = ZERO;
+reg [DATA_WIDTH-1:0] b_selected = ZERO;
+reg [DATA_WIDTH-1:0] offset = ZERO;
+reg [DATA_WIDTH-1:0] carry_in_selected = ZERO;
 
 always_comb begin
     b_selected = (mode == 1'b0) ? data_in_b : ~data_in_b;
@@ -68,7 +68,7 @@ carry_extractor #(
 );
 
 always_comb begin
-    overflow = (carries[DATA_WIDTH - 1] != carry_out);
+    overflow = (carries[DATA_WIDTH-1] != carry_out);
 end
 
 endmodule

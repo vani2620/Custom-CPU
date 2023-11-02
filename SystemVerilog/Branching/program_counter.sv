@@ -18,23 +18,23 @@ module program_counter #(
     input wire link_en,
     input wire [4:0] branch_cond,
 
-    input wire [INSTR_ADDR_WIDTH - 1:0] branch_base_addr,
+    input wire [INSTR_ADDR_WIDTH-1:0] branch_base_addr,
 
-    input wire [INSTR_ADDR_WIDTH - 1:0] short_offset, //16-bit signed offset, sign-extended to 32 bits, used with register-relative addressing
-    input wire [INSTR_ADDR_WIDTH - 1:0] long_offset, //24-bit signed offset, sign-extended to 32 bits, used with PC-relative addressing
+    input wire [INSTR_ADDR_WIDTH-1:0] short_offset, //16-bit signed offset, sign-extended to 32 bits, used with register-relative addressing
+    input wire [INSTR_ADDR_WIDTH-1:0] long_offset, //24-bit signed offset, sign-extended to 32 bits, used with PC-relative addressing
 
-    output reg [INSTR_ADDR_WIDTH - 1:0] next_instr_addr,
-    output reg [REG_ADDR_WIDTH - 1:0] link_reg_addr
+    output reg [INSTR_ADDR_WIDTH-1:0] next_instr_addr,
+    output reg [REG_ADDR_WIDTH-1:0] link_reg_addr
 );
 
-reg [INSTR_ADDR_WIDTH - 1:0] counter;
+reg [INSTR_ADDR_WIDTH-1:0] counter;
 reg [4:0] conditions;
 
-wire [INSTR_ADDR_WIDTH - 1:0] inc_counter = counter << 1; //byte-addressed memory; shortest instructions are 2 bytes
+wire [INSTR_ADDR_WIDTH-1:0] inc_counter = counter << 1; //byte-addressed memory; shortest instructions are 2 bytes
 
-wire [INSTR_ADDR_WIDTH - 1:0] temp_next_instr_addr;
+wire [INSTR_ADDR_WIDTH-1:0] temp_next_instr_addr;
 
-always_comb begin : calcNext
+always_comb begin : calcNextPC
     if (stall) begin
         temp_next_instr_addr = counter;
     end else if (branch_en) begin

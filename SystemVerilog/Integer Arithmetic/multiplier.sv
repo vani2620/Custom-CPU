@@ -6,10 +6,10 @@
 module multiplier #(
     parameter int DATA_WIDTH = 64
 )(
-    input wire [DATA_WIDTH - 1:0] data_in_a,
-    input wire [DATA_WIDTH - 1:0] data_in_b,
+    input wire [DATA_WIDTH-1:0] data_in_a,
+    input wire [DATA_WIDTH-1:0] data_in_b,
 
-    output reg [2*DATA_WIDTH - 1:0] data_out
+    output reg [2*DATA_WIDTH-1:0] data_out
 );
 
 always_comb begin

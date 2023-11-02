@@ -14,7 +14,6 @@ module shifter #(
 
     input wire [DATA_WIDTH-1:0] data_in,
 
-
     output reg [DATA_WIDTH-1:0] data_out
 );
 
@@ -27,8 +26,7 @@ wire [DATA_WIDTH-1:0] data_llog = data_vector << shift_amt; // left logical shif
 wire [DATA_WIDTH-1:0] data_rlog = data_vector >> shift_amt; // right logical shift
 
 // Rotates
-wire [DATA_WIDTH-1:0] data_lrot = data_vector << {1'b0, shift_amt}; // left rotate
-wire [DATA_WIDTH-1:0] data_rrot = data_vector >> {1'b0, shift_amt}; // right rotate
+wire [DATA_WIDTH-1:0] data_rrot = data_vector << {1'b0, shift_amt}; // left rotate
 
 
 //Arithmetic shift
@@ -36,11 +34,10 @@ wire [DATA_WIDTH-1:0] data_rar = signed_data_vector >> {1'b0, shift_amt}; // rig
 
 always_comb begin
     case(mode)
-        LLOG: data_out = data_llog[DATA_WIDTH-1:0];
-        RLOG: data_out = data_rlog[DATA_WIDTH-1:0];
-        LROT: data_out = data_lrot[DATA_WIDTH-1:0];
-        RROT: data_out = data_rrot[DATA_WIDTH-1:0];
-        RAR: data_out = data_rar[DATA_WIDTH-1:0];
+        2'b00: data_out = data_llog[DATA_WIDTH-1:0];
+        2'b01: data_out = data_rlog[DATA_WIDTH-1:0];
+        2'b10: data_out = data_rrot[DATA_WIDTH-1:0];
+        2'b11: data_out = data_rar[DATA_WIDTH-1:0];
         default: data_out = data;
     endcase
 end

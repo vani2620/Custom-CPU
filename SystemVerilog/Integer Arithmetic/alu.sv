@@ -8,15 +8,15 @@
 module alu #(
     parameter int DATA_WIDTH = 32
 )(
-    input wire [OPCODE_WIDTH - 1:0] opcode,
+    input wire [OPCODE_WIDTH-1:0] opcode,
 
-    input wire [DATA_WIDTH - 1:0] data_in_a,
-    input wire [DATA_WIDTH - 1:0] data_in_b,
+    input wire [DATA_WIDTH-1:0] data_in_a,
+    input wire [DATA_WIDTH-1:0] data_in_b,
     input wire carry_in,
 
-    input wire [SHIFT_WIDTH - 1:0] shift_amt,
+    input wire [SHIFT_WIDTH-1:0] shift_amt,
 
-    output reg [DATA_WIDTH - 1:0] data_out,
+    output reg [DATA_WIDTH-1:0] data_out,
     output reg carry_out,
     output reg overflow
 );
